@@ -1,0 +1,62 @@
+<br><br>
+  <% if session[:user_id] %>
+    <div><%= link_to "Logout",logout_path,class: "btn btn-info" %></div>
+    <div class="col-3">
+    <h2>Users</h2>
+    <%= turbo_frame_tag "users" do %>
+        <% @users.each do |user|%>
+           <div class="card mb-2">
+            <div class="card-body">
+              <%= user.username %>
+            </div>
+           </div>  
+      <% end %>
+     <% end %>
+    <hr>
+      <h2>Add Room</h2>
+      <%= turbo_frame_tag "new room" do %>
+        <%= render "form",room: Room.new %>
+      <% end %>
+      <hr>
+      <%= turbo_frame_tag "list of rooms"  do %>
+        <% @rooms.each do |room| %>
+         <%= link_to room, data: {turbo: false} do %>
+          <div class="card mb-2">
+            <div class="card-body">
+              <%= room.name %>
+            </div>
+          </div>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-9">
+     <% if @room.present? %>
+      <div class="chat-room">
+       <p><%= @room.name %></p>
+       <%= turbo_frame_tag "message" do %>
+         <% @room.messages.each do |message| %>
+         <div class="message mb-3 <%= 'me' if  message.user == User.find(session[:user_id]) %>">
+           <div class="content-container">
+           <div class="content">
+              <%= message.content %>
+           </div>
+           <div class="author">
+            <%= message.user.username %>
+           </div>
+          </div>
+          </div>
+          <br>
+         <% end  %>
+       <div class="chat-box">
+        <%= render 'messages/form', message: Message.new , room: @room %> 
+        </div>
+        <% end %>
+       </div>
+     <% end %>
+    </div>
+    <% else %>
+     <h2>Signup</h2>
+       <%= render "users/form",user: User.new %>
+    <% end %>
+
