@@ -74,3 +74,5 @@ end
 gem 'pg'
 gem 'webpacker'
 gem 'bootstrap-sass'
+
+gem "noticed", "~> 1.6"

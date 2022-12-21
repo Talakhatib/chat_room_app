@@ -1,7 +1,0 @@
-<%= form_with model: message, class:'form-inline' do |f| %>
- <div class="form-group">
- <%= f.text_field :content, placeholder:"Type your message here.",class:"form-control mr-2" %>
- </div>
- <%= hidden_field_tag :room, room.id %>
-   <%= f.submit "Add Message", class:"btn btn-primary" %>
-<% end %>

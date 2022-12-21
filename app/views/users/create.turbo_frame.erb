@@ -1,9 +1,0 @@
-<%= turbo_stream.update "users" do %>
-    <% @users.each do |user|%>
-     <div class="card mb-2">
-        <div class="card-body">
-            <%= user.username %>
-        </div>
-     </div>  
-    <% end %>
-<% end %>

@@ -1,31 +1,29 @@
 class RoomsController < ApplicationController
 
     def index
-        @rooms = Room.all
-        @users = User.all
-    end
-    
-    def show
-        @room = Room.find(params[:id])
-        @rooms = Room.all
-        @users = User.all
-        render :index
+        @current_user = current_user
+        redirect_to '/signin' unless @current_user
+        @rooms = Room.public_rooms
+        @users = User.all_except(@current_user)
+        @room = Room.new
     end
 
+    def show
+        @current_user = current_user
+        @single_room = Room.find(params[:id])
+        @rooms = Room.public_rooms
+        @users = User.all_except(@current_user)
+        @room = Room.new
+        @message = Message.new
+        @messages = @single_room.messages
+      
+        render "index"
+      end
+
     def create
-        room = Room.new(room_params)
-        room.user = User.find(session[:user_id])
-        respond_to do |format|
-            if room.save!
-              @rooms = Room.all
-              format.turbo_stream
-              format.html{redirect_to root_path}
-           else 
-            flash[:danger]="Failed to save a new room !! Please try again."
-            format.html{redirect_to root_path}
-           end
-        end
+        @room = Room.create(name: params["room"]["name"])
     end
+    
 
     private 
     def room_params

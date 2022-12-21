@@ -1,19 +1,13 @@
 class MessagesController < ApplicationController
 
     def create
-        @message = Message.new(message_params)
-        @message.user =User.find(session[:user_id])
-        @message.room = Room.find(params[:room])
-        @message.save!
-        @room = @message.room
-        respond_to do |format|
-            format.turbo_stream 
-            format.html { redirect_to @message.room }
-        end
+        @current_user = current_user
+        @message = @current_user.messages.create(content: msg_params[:content], room_id: params[:room_id])
     end
 
-    private 
-    def message_params 
-        params.require(:message).permit(:content)
+    private
+
+    def msg_params
+      params.require(:message).permit(:content)
     end
 end
