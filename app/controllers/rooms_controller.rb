@@ -16,6 +16,7 @@ class RoomsController < ApplicationController
         @room = Room.new
         @message = Message.new
         @messages = @single_room.messages
+        set_notifications_to_read
       
         render "index"
       end
@@ -28,5 +29,14 @@ class RoomsController < ApplicationController
     private 
     def room_params
         params.require(:room).permit(:name)
+    end
+
+    def set_notifications_to_read
+        notifications = Notification.where(recipient: current_user).unread 
+        notifications.each do |notification|
+           if notification.params[:message].room == @single_room
+             notification.update(read_at: Time.zone.now)
+           end
+        end
     end
 end

@@ -13,14 +13,14 @@ class MessageNotification < Noticed::Base
 
   # Add required params
   #
-  param :message
+  # param :message
   # Define helper methods to make rendering easier.
   
-  def message
-    params[:message].content
-  end
+  # def message
+  #   params[:message].content
+  # end
   
-  def url
-    message_path(params[:message])
-  end
+  # def url
+  #   message_path(params[:message])
+  # end
 end

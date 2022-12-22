@@ -1,15 +1,10 @@
-<li class="alert-notice">
-  <div>
-    <p >
-      <%= notification.to_notification.message %>
-    </p>
-    <div class="flex justify-between mt-1 text-gray-500 text-sm space-x-4">
-      <p>
-        Received on <%= notification.created_at.to_date %>
-      </p>
-      <p>
-        Status: <%= notification.read? ? "Read" : "Unread" %>
-      </p>
-    </div>
-  </div>
-</li>
+
+   <% counter = 0 %>
+   <% notifications = Notification.where(recipient: current_user).unread %> 
+   <% notifications.each do |notification| %>
+      <% if notification.params[:message].room_id == room.id %>
+       <% counter = counter + 1 %>
+      <% end %>
+   <% end %>
+   <%= counter if counter > 0 %>
+

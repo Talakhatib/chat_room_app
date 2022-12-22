@@ -11,8 +11,8 @@ Rails.application.routes.draw do
   delete '/signout', to: 'sessions#destroy'
   resources :rooms do 
     resources :messages
+    resources :notifications, only: [:index]
   end
   resources :users
   root 'rooms#index'
-  resources :notifications, only: [:index]
 end

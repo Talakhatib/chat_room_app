@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
     has_many :messages
 
-    has_many :notifications, as: :recipient
+    has_many :notifications, dependent: :destroy ,as: :recipient
 end
