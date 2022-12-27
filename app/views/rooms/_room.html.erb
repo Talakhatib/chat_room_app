@@ -20,12 +20,14 @@
       <%= room.messages.last.user.username %>: <%= room.messages.last.content %>
       <% end %>
    </div>
-   <%= turbo_stream_from "messag_notifications" %>
-     <div id="messsag_notifications">
-       <%= render "messag_notifications/messag_notification",room: room %>
-    </div>
+    <%= turbo_stream_from "messag_notifications_#{current_user.username}_#{room.id}" %>
+       <div id="messag_notifications">
+         <%= turbo_frame_tag "messag_notifications_#{current_user.username}_#{room.id}" do %>
+           <%= render "messag_notifications/messag_notification",room: room %>
+         <% end %>
+       </div>
+   </div>
   </div>
-</div>
 </div>
 
 

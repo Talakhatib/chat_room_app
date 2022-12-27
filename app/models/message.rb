@@ -7,7 +7,6 @@ class Message < ApplicationRecord
   after_create_commit { broadcast_append_to(self.room,locals: {current_user: self.user}) }
   has_many :messag_notifications
   after_create_commit :notify_user
-
   
   def notify_user
     users = User.where.not(id: self.user.id)
