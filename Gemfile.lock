@@ -97,6 +97,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.11.0)
     execjs (2.8.1)
+    ffi (1.15.5)
     ffi (1.15.5-x64-mingw32)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -153,9 +154,12 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.10-x64-mingw32)
       racc (~> 1.4)
+    nokogiri (1.13.10-x86_64-linux)
+      racc (~> 1.4)
     noticed (1.6.0)
       http (>= 4.0.0)
       rails (>= 5.2.0)
+    pg (1.4.5)
     pg (1.4.5-x64-mingw32)
     public_suffix (5.0.1)
     puma (5.6.5)
@@ -216,6 +220,8 @@ GEM
       rspec-support (~> 3.11)
     rspec-support (3.12.0)
     rubyzip (2.3.2)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     selenium-webdriver (4.7.1)
@@ -231,6 +237,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.5.4-x64-mingw32)
+    sqlite3 (1.5.4-x86_64-linux)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     thor (1.2.1)
@@ -245,6 +252,7 @@ GEM
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
+    unf_ext (0.0.8.2)
     unf_ext (0.0.8.2-x64-mingw32)
     web-console (4.2.0)
       actionview (>= 6.0.0)
@@ -270,6 +278,7 @@ GEM
 
 PLATFORMS
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap
