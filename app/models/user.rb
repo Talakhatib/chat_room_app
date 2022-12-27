@@ -5,6 +5,6 @@ class User < ApplicationRecord
     after_create_commit { broadcast_append_to "users" }
 
     has_many :messages
-
-    has_many :notifications, dependent: :destroy ,as: :recipient
+    has_many :messag_notifications
+    
 end

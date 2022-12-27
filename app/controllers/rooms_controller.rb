@@ -8,6 +8,10 @@ class RoomsController < ApplicationController
         @room = Room.new
     end
 
+    def new
+        @room = Room.new
+    end
+
     def show
         @current_user = current_user
         @single_room = Room.find(params[:id])
@@ -23,6 +27,7 @@ class RoomsController < ApplicationController
 
     def create
         @room = Room.create(name: params["room"]["name"])
+        redirect_to rooms_path
     end
     
 
@@ -32,11 +37,9 @@ class RoomsController < ApplicationController
     end
 
     def set_notifications_to_read
-        notifications = Notification.where(recipient: current_user).unread 
+        notifications = MessagNotification.where(user: current_user,room: @single_room,read_at: nil)
         notifications.each do |notification|
-           if notification.params[:message].room == @single_room
-             notification.update(read_at: Time.zone.now)
-           end
+            notification.update(read_at: Time.zone.now)
         end
     end
 end

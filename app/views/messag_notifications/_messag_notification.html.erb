@@ -1,0 +1,7 @@
+<% if room.messag_notifications.any? && current_user.messag_notifications.where(read_at: nil,room: room).count > 0 %>
+        <div class="new_messages">
+         <div class="new_messages_number">
+           <%= current_user.messag_notifications.where(read_at: nil,room: room).count  %>
+         </div>
+        </div>
+<% end %>

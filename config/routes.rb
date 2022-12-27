@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   # mount ActionCable.server => "/cable"
   get '/signin', to: 'sessions#new'
   post '/signin', to: 'sessions#create'
-  delete '/signout', to: 'sessions#destroy'
+  get '/signout', to: 'sessions#logout'
   resources :rooms do 
     resources :messages
-    resources :notifications, only: [:index]
+    # resources :notifications, only: [:index]
   end
   resources :users
   root 'rooms#index'
+  post '/search', to: "users#search"
 end

@@ -3,16 +3,16 @@ class Message < ApplicationRecord
   belongs_to :room, dependent: :destroy
   
   validates :content, presence: true
-
-  after_create_commit { broadcast_append_to self.room }
-  has_noticed_notifications
+  
+  after_create_commit { broadcast_append_to(self.room,locals: {current_user: self.user}) }
+  has_many :messag_notifications
   after_create_commit :notify_user
- 
- 
+
+  
   def notify_user
-    users = User.all_except(self.user)
+    users = User.where.not(id: self.user.id)
     users.each do |user|
-      MessageNotification.with(message: self).deliver_later(user)
+      MessagNotification.create(user: user,room: self.room,message: self )
     end
   end
 

@@ -77,3 +77,4 @@ gem 'webpacker'
 gem 'bootstrap-sass'
 
 gem "noticed", "~> 1.6"
+gem "font-awesome-rails"

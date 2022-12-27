@@ -1,1 +1,31 @@
-<%= link_to room.name, room %>
+<div class="chat_list_item">
+<div class="chat_list_avatar">
+</div>
+<div class="chat_list_text">
+  <div class="chat_list_text_name">
+   <div class="bot_name">
+    <div class="room_name">
+       <%= link_to room.name, room %> 
+   </div>
+     <%# <div class="verified_bot">
+     </div> %>
+   </div>
+     <div class="date_of_last_message">
+        <%= room.messages.last.created_at.to_s(:time) if room.messages.any? %>
+     </div>
+   </div>
+  <div class="message">
+   <div class="message_content">
+     <%  if room.messages.any? %>
+      <%= room.messages.last.user.username %>: <%= room.messages.last.content %>
+      <% end %>
+   </div>
+   <%= turbo_stream_from "messag_notifications" %>
+     <div id="messsag_notifications">
+       <%= render "messag_notifications/messag_notification",room: room %>
+    </div>
+  </div>
+</div>
+</div>
+
+

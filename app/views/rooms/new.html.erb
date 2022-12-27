@@ -1,0 +1,5 @@
+<h1>Add Room</h1>
+<%= form_with(model: @room, remote: true,data: { controller: "reset-form", action: "turbo:submit-end->reset-form#reset" } ) do |f| %>
+  <%= f.text_field :name %>
+  <%= f.submit "Add Room", class:"btn btn-primary" %>
+<% end %>
