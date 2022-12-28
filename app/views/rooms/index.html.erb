@@ -47,10 +47,10 @@
         </div>
        </div>
       </div>
-      <%= turbo_stream_from @single_room %>
       <div class="chat_room_message_section">
        <div class="date_sent">
        </div>
+       <%= turbo_stream_from @single_room %>
         <div id="messages">
           <%= render @messages %>
         </div>

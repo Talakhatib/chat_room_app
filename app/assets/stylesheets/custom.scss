@@ -500,7 +500,6 @@ flex-grow: 0;
 display: flex;
 flex-direction: column;
 justify-content: flex-end;
-align-items: center;
 padding: 24px 0px;
 gap: 16px;
 width: 694px;
@@ -735,6 +734,15 @@ flex-grow: 0;
 }
 .send_icon:hover{
   font-size: 22px;
+}
+.message-box {
+  width: fit-content;
+  max-width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: white ;
+  padding: 10px
 }
 
 

@@ -1,10 +1,11 @@
 class Message < ApplicationRecord
+  
   belongs_to :user,dependent: :destroy
   belongs_to :room, dependent: :destroy
   
   validates :content, presence: true
   
-  after_create_commit { broadcast_append_to(self.room,locals: {current_user: self.user}) }
+  after_create_commit { broadcast_append_to self.room }
   has_many :messag_notifications
   after_create_commit :notify_user
   
