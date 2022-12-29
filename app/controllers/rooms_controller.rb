@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
         redirect_to '/signin' unless @current_user
         @rooms = Room.public_rooms
         @users = User.all_except(@current_user)
+        @current_user.update!(online: "")
         @room = Room.new
     end
 
@@ -20,7 +21,8 @@ class RoomsController < ApplicationController
         @room = Room.new
         @message = Message.new
         @messages = @single_room.messages
-        set_notifications_to_read
+        @current_user.update!(online: @single_room.name)
+        # set_notifications_to_read
       
         render "index"
       end
